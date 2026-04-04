@@ -1,6 +1,8 @@
 package br.edu.cs.poo.ac.bolsa.entidades;
 
-public class Contatos {
+import java.io.Serializable;
+
+public class Contatos implements Serializable {
     private String email;
     private String telefoneFixo;
     private String telefoneCelular;

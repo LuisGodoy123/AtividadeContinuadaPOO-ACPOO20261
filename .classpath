@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="lib/junit-platform-engine-1.8.2.jar"/>
 	<classpathentry kind="lib" path="lib/opentest4j-1.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/junit-platform-launcher-1.8.2.jar"/>
+	<classpathentry kind="lib" path="lib/PersistenciaObjetos.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

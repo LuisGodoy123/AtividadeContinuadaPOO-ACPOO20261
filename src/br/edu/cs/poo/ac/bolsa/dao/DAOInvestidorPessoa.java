@@ -1,0 +1,40 @@
+package br.edu.cs.poo.ac.bolsa.dao;
+
+import br.edu.cs.poo.ac.bolsa.entidades.InvestidorPessoa;
+
+public class DAOInvestidorPessoa extends DAOGenerico {
+    public DAOInvestidorPessoa() {
+        inicializarCadastro(InvestidorPessoa.class);
+    }
+
+    public InvestidorPessoa buscarInvestidorPessoa(String cpf) {
+        return (InvestidorPessoa) cadastro.buscar(cpf);
+    }
+
+    public boolean incluirInvestidorPessoa(InvestidorPessoa ip) {
+        if (buscarInvestidorPessoa(ip.getCpf()) == null) {
+            cadastro.incluir(ip, ip.getCpf());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean alterarInvestidorPessoa(InvestidorPessoa ip) {
+        if (buscarInvestidorPessoa(ip.getCpf()) != null) {
+            cadastro.alterar(ip, ip.getCpf());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean excluirInvestidorPessoa(String cpf) {
+        if (buscarInvestidorPessoa(cpf) != null) {
+            cadastro.excluir(cpf);
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
