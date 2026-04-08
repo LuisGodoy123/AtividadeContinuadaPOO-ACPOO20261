@@ -1,6 +1,6 @@
 package br.edu.cs.poo.ac.bolsa.dao;
 
-import br.edu.cs.poo.ac.bolsa.entidades.Ativo;
+import br.edu.cs.poo.ac.bolsa.entidade.Ativo;
 
 public class DAOAtivo extends DAOGenerico {
     public DAOAtivo() {

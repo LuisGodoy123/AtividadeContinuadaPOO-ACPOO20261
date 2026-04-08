@@ -1,4 +1,4 @@
-package br.edu.cs.poo.ac.bolsa.entidades;
+package br.edu.cs.poo.ac.bolsa.entidade;
 
 public enum FaixaRenda {
     REGULAR(1, "Renda regular", 10000.00, 50000.00),

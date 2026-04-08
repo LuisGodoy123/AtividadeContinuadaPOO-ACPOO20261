@@ -1,7 +1,7 @@
 package br.edu.cs.poo.ac.bolsa.negocio;
 
 import br.edu.cs.poo.ac.bolsa.dao.DAOAtivo;
-import br.edu.cs.poo.ac.bolsa.entidades.Ativo;
+import br.edu.cs.poo.ac.bolsa.entidade.Ativo;
 import br.edu.cs.poo.ac.bolsa.util.MensagensValidacao;
 
 public class AtivoMediator {

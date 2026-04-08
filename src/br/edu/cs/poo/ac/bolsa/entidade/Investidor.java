@@ -1,4 +1,4 @@
-package br.edu.cs.poo.ac.bolsa.entidades;
+package br.edu.cs.poo.ac.bolsa.entidade;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

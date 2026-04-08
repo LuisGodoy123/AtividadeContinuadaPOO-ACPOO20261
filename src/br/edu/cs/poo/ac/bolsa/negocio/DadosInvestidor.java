@@ -3,10 +3,10 @@ package br.edu.cs.poo.ac.bolsa.negocio;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.edu.cs.poo.ac.bolsa.entidades.Contatos;
-import br.edu.cs.poo.ac.bolsa.entidades.Endereco;
-import br.edu.cs.poo.ac.bolsa.entidades.InvestidorEmpresa;
-import br.edu.cs.poo.ac.bolsa.entidades.InvestidorPessoa;
+import br.edu.cs.poo.ac.bolsa.entidade.Contatos;
+import br.edu.cs.poo.ac.bolsa.entidade.Endereco;
+import br.edu.cs.poo.ac.bolsa.entidade.InvestidorEmpresa;
+import br.edu.cs.poo.ac.bolsa.entidade.InvestidorPessoa;
 
 public class DadosInvestidor {
     private String nome;

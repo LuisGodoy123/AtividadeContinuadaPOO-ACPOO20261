@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import br.edu.cesarschool.next.oo.persistenciaobjetos.CadastroObjetos;
-import br.edu.cs.poo.ac.bolsa.entidades.Ativo;
-import br.edu.cs.poo.ac.bolsa.entidades.FaixaRenda;
+import br.edu.cs.poo.ac.bolsa.entidade.Ativo;
+import br.edu.cs.poo.ac.bolsa.entidade.FaixaRenda;
 import br.edu.cs.poo.ac.bolsa.negocio.AtivoMediator;
 import br.edu.cs.poo.ac.bolsa.util.MensagensValidacao;
 

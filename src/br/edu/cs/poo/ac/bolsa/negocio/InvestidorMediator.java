@@ -5,11 +5,11 @@ import java.time.LocalDate;
 
 import br.edu.cs.poo.ac.bolsa.dao.DAOInvestidorEmpresa;
 import br.edu.cs.poo.ac.bolsa.dao.DAOInvestidorPessoa;
-import br.edu.cs.poo.ac.bolsa.entidades.Contatos;
-import br.edu.cs.poo.ac.bolsa.entidades.Endereco;
-import br.edu.cs.poo.ac.bolsa.entidades.FaixaRenda;
-import br.edu.cs.poo.ac.bolsa.entidades.InvestidorEmpresa;
-import br.edu.cs.poo.ac.bolsa.entidades.InvestidorPessoa;
+import br.edu.cs.poo.ac.bolsa.entidade.Contatos;
+import br.edu.cs.poo.ac.bolsa.entidade.Endereco;
+import br.edu.cs.poo.ac.bolsa.entidade.FaixaRenda;
+import br.edu.cs.poo.ac.bolsa.entidade.InvestidorEmpresa;
+import br.edu.cs.poo.ac.bolsa.entidade.InvestidorPessoa;
 import br.edu.cs.poo.ac.bolsa.util.MensagensValidacao;
 import br.edu.cs.poo.ac.bolsa.util.ValidadorCpfCnpj;
 

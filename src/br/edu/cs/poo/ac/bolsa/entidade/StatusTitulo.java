@@ -1,4 +1,4 @@
-package br.edu.cs.poo.ac.bolsa.entidades;
+package br.edu.cs.poo.ac.bolsa.entidade;
 
 public enum StatusTitulo {
     ATIVO(1, "Titulo ativo"),

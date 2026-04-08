@@ -3,14 +3,14 @@ package br.edu.cs.poo.ac.bolsa.testes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import br.edu.cs.poo.ac.bolsa.entidades.Ativo;
-import br.edu.cs.poo.ac.bolsa.entidades.Contatos;
-import br.edu.cs.poo.ac.bolsa.entidades.Endereco;
-import br.edu.cs.poo.ac.bolsa.entidades.FaixaRenda;
-import br.edu.cs.poo.ac.bolsa.entidades.InvestidorEmpresa;
-import br.edu.cs.poo.ac.bolsa.entidades.InvestidorPessoa;
-import br.edu.cs.poo.ac.bolsa.entidades.StatusTitulo;
-import br.edu.cs.poo.ac.bolsa.entidades.Titulo;
+import br.edu.cs.poo.ac.bolsa.entidade.Ativo;
+import br.edu.cs.poo.ac.bolsa.entidade.Contatos;
+import br.edu.cs.poo.ac.bolsa.entidade.Endereco;
+import br.edu.cs.poo.ac.bolsa.entidade.FaixaRenda;
+import br.edu.cs.poo.ac.bolsa.entidade.InvestidorEmpresa;
+import br.edu.cs.poo.ac.bolsa.entidade.InvestidorPessoa;
+import br.edu.cs.poo.ac.bolsa.entidade.StatusTitulo;
+import br.edu.cs.poo.ac.bolsa.entidade.Titulo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
