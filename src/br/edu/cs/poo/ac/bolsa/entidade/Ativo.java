@@ -1,8 +1,8 @@
 package br.edu.cs.poo.ac.bolsa.entidade;
 
-import java.io.Serializable;
+import br.edu.cs.poo.ac.bolsa.util.Registro;
 
-public class Ativo implements Serializable {
+public class Ativo extends Registro {
     private long codigo;
     private String descricao;
     private double valorMinimoAplicacao;
@@ -24,6 +24,9 @@ public class Ativo implements Serializable {
         this.faixaMinimaPermitida = faixaMinimaPermitida;
         this.prazoEmMeses = prazoEmMeses;
     }
+
+    @Override
+    public String getIdentificador() { return "" + codigo; }
 
     public long getCodigo() { return codigo; }
     public void setCodigo(long codigo) { this.codigo = codigo; }
