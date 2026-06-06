@@ -1,6 +1,12 @@
 package br.edu.cs.poo.ac.bolsa.negocio;
 
 import java.math.BigDecimal;
+import br.edu.cs.poo.ac.bolsa.entidade.ComparadorInvestidorPessoaRenda;
+import br.edu.cs.poo.ac.bolsa.entidade.OrdenacaoInvestidorPessoa;
+import br.edu.cs.poo.ac.bolsa.util.Comparador;
+import br.edu.cs.poo.ac.bolsa.util.ComparadorGenerico;
+import br.edu.cs.poo.ac.bolsa.util.Comparavel;
+import br.edu.cs.poo.ac.bolsa.util.Ordenador;
 import java.time.LocalDate;
 
 import br.edu.cs.poo.ac.bolsa.dao.DAOInvestidorEmpresa;
@@ -243,5 +249,18 @@ public class InvestidorMediator {
             return null;
         }
         return daoInvPes.buscarInvestidorPessoa(cpf);
+    }
+    
+    public InvestidorPessoa[] consultarInvestidorPessoa(OrdenacaoInvestidorPessoa criterio) {
+        InvestidorPessoa[] investidores = daoInvPes.consultarTodos();
+        if (investidores == null) return null;
+        Comparador comparador;
+        if (criterio == OrdenacaoInvestidorPessoa.RENDA) {
+            comparador = new ComparadorInvestidorPessoaRenda();
+        } else {
+            comparador = new ComparadorGenerico();
+        }
+        Ordenador.ordenar(investidores, comparador);
+        return investidores;
     }
 }

@@ -37,4 +37,14 @@ public class DAOInvestidorPessoa extends DAOGenerico {
             return false;
         }
     }
+    
+    public InvestidorPessoa[] consultarTodos() {
+        java.io.Serializable[] todos = cadastro.buscarTodos();
+        if (todos == null) return null;
+        InvestidorPessoa[] resultado = new InvestidorPessoa[todos.length];
+        for (int i = 0; i < todos.length; i++) {
+            resultado[i] = (InvestidorPessoa) todos[i];
+        }
+        return resultado;
+    }
 }
