@@ -14,6 +14,7 @@ import br.edu.cs.poo.ac.bolsa.dao.DAOInvestidorPessoa;
 import br.edu.cs.poo.ac.bolsa.entidade.Contatos;
 import br.edu.cs.poo.ac.bolsa.entidade.Endereco;
 import br.edu.cs.poo.ac.bolsa.entidade.FaixaRenda;
+import br.edu.cs.poo.ac.bolsa.entidade.Investidor;
 import br.edu.cs.poo.ac.bolsa.entidade.InvestidorEmpresa;
 import br.edu.cs.poo.ac.bolsa.entidade.InvestidorPessoa;
 import br.edu.cs.poo.ac.bolsa.util.MensagensValidacao;
@@ -250,7 +251,7 @@ public class InvestidorMediator {
         }
         return daoInvPes.buscarInvestidorPessoa(cpf);
     }
-    
+
     public InvestidorPessoa[] consultarInvestidorPessoa(OrdenacaoInvestidorPessoa criterio) {
         InvestidorPessoa[] investidores = daoInvPes.consultarTodos();
         if (investidores == null) return null;
@@ -262,5 +263,27 @@ public class InvestidorMediator {
         }
         Ordenador.ordenar(investidores, comparador);
         return investidores;
+    }
+
+    public Investidor buscarInvestidor(String identificador) {
+        if (identificador == null || identificador.trim().isEmpty()) return null;
+        String limpo = identificador.replaceAll("[^0-9]", "");
+        if (limpo.length() == 11) {
+            return buscarInvestidorPessoa(identificador);
+        } else if (limpo.length() == 14) {
+            return buscarInvestidorEmpresa(identificador);
+        }
+        return null;
+    }
+
+    public MensagensValidacao alterarInvestidor(Investidor investidor) {
+        if (investidor instanceof InvestidorPessoa) {
+            return alterarInvestidorPessoa((InvestidorPessoa) investidor);
+        } else if (investidor instanceof InvestidorEmpresa) {
+            return alterarInvestidorEmpresa((InvestidorEmpresa) investidor);
+        }
+        MensagensValidacao msgs = new MensagensValidacao();
+        msgs.adicionar("Tipo de investidor desconhecido.");
+        return msgs;
     }
 }

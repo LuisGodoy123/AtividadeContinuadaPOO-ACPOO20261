@@ -2,21 +2,33 @@ package br.edu.cs.poo.ac.bolsa.entidade;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
 import br.edu.cs.poo.ac.bolsa.util.Comparavel;
 
 public class InvestidorPessoa extends Investidor implements Comparavel {
+
     private String cpf;
     private double renda;
     private FaixaRenda faixaRenda;
 
     public InvestidorPessoa() {}
 
-    public InvestidorPessoa(String nome, Endereco endereco, LocalDate dataNascimento, BigDecimal bonus, Contatos contatos, String cpf, double renda, FaixaRenda faixaRenda) {
+    public InvestidorPessoa(String nome, Endereco endereco, LocalDate dataNascimento,
+                             BigDecimal bonus, Contatos contatos, String cpf,
+                             double renda, FaixaRenda faixaRenda) {
         super(nome, endereco, dataNascimento, bonus, contatos);
         this.cpf = cpf;
         this.renda = renda;
         this.faixaRenda = faixaRenda;
+    }
+
+    @Override
+    public String getIdentificador() {
+        return cpf;
+    }
+
+    @Override
+    public BigDecimal getEntradaFinanceira() {
+        return BigDecimal.valueOf(renda);
     }
 
     @Override
@@ -30,7 +42,6 @@ public class InvestidorPessoa extends Investidor implements Comparavel {
 
     public LocalDate getDataNascimento() { return getDataCriacao(); }
     public void setDataNascimento(LocalDate dataNascimento) { setDataCriacao(dataNascimento); }
-
     public String getCpf() { return cpf; }
     public void setCpf(String cpf) { this.cpf = cpf; }
     public double getRenda() { return renda; }

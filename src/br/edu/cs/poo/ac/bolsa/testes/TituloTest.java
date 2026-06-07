@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.edu.cs.poo.ac.bolsa.entidade.Ativo;
-import br.edu.cs.poo.ac.bolsa.entidade.Contatos;
-import br.edu.cs.poo.ac.bolsa.entidade.Endereco;
 import br.edu.cs.poo.ac.bolsa.entidade.FaixaRenda;
 import br.edu.cs.poo.ac.bolsa.entidade.InvestidorEmpresa;
 import br.edu.cs.poo.ac.bolsa.entidade.InvestidorPessoa;
@@ -39,7 +37,6 @@ public class TituloTest {
     private Titulo criarTituloPadrao() {
         return new Titulo(
                 pessoa,
-                empresa,
                 ativo,
                 new BigDecimal("1000.00"),     // valorInvestido
                 new BigDecimal("1000.00"),     // valorAtual
@@ -148,7 +145,6 @@ public class TituloTest {
 
         assertEquals(0, t.getValorAtual().compareTo(esperado));
     }
-
     @Test
     void testGetNumeroParaInvestidorPessoa() {
 
@@ -163,7 +159,6 @@ public class TituloTest {
 
         Titulo titulo = new Titulo(
                 pessoa,
-                null,
                 ativo,
                 BigDecimal.TEN,
                 BigDecimal.TEN,
@@ -193,7 +188,6 @@ public class TituloTest {
         LocalDate dataAplicacao = LocalDate.of(2024, 5, 20);
 
         Titulo titulo = new Titulo(
-                null,
                 empresa,
                 ativo,
                 BigDecimal.TEN,

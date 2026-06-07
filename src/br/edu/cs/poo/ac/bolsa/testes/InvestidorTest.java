@@ -3,7 +3,9 @@ package br.edu.cs.poo.ac.bolsa.testes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import br.edu.cs.poo.ac.bolsa.entidade.FaixaRenda;
 import br.edu.cs.poo.ac.bolsa.entidade.Investidor;
+import br.edu.cs.poo.ac.bolsa.entidade.InvestidorPessoa;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,18 +17,17 @@ public class InvestidorTest {
 
     @BeforeEach
     void setup() {
-        investidor = new Investidor(
+        investidor = new InvestidorPessoa(
                 "João Silva",
-                null,                // mocks simples
+                null,
                 LocalDate.now().minusYears(5),
-                new BigDecimal("100.00"),      // bônus inicial
-                null
+                new BigDecimal("100.00"),
+                null,
+                "11111111111",
+                10000.0,
+                FaixaRenda.PREMIUM
         );
     }
-
-    // ---------------------------------------------------------
-    // TESTES DO MÉTODO creditarBonus
-    // ---------------------------------------------------------
 
     @Test
     void deveCreditarBonusQuandoValorValido() {
@@ -46,10 +47,6 @@ public class InvestidorTest {
         assertEquals(new BigDecimal("100.00"), investidor.getBonus());
     }
 
-    // ---------------------------------------------------------
-    // TESTES DO MÉTODO debitarBonus
-    // ---------------------------------------------------------
-
     @Test
     void deveDebitarBonusQuandoValorValido() {
         investidor.debitarBonus(new BigDecimal("30.00"));
@@ -67,10 +64,6 @@ public class InvestidorTest {
         investidor.debitarBonus(null);
         assertEquals(new BigDecimal("100.00"), investidor.getBonus());
     }
-
-    // ---------------------------------------------------------
-    // TESTE EXTRA: Garantir que não quebra com valores grandes
-    // ---------------------------------------------------------
 
     @Test
     void deveCreditarValorGrande() {

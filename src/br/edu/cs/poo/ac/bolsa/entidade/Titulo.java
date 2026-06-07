@@ -4,11 +4,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.io.Serializable;
 
-public class Titulo implements Serializable {
-    private InvestidorPessoa investidorPessoa;
-    private InvestidorEmpresa investidorEmpresa;
+import br.edu.cs.poo.ac.bolsa.util.Registro;
+
+public class Titulo extends Registro {
+
+    private Investidor investidor;
     private Ativo ativo;
     private BigDecimal valorInvestido;
     private BigDecimal valorAtual;
@@ -20,9 +21,12 @@ public class Titulo implements Serializable {
 
     public Titulo() {}
 
-    public Titulo(InvestidorPessoa investidorPessoa, InvestidorEmpresa investidorEmpresa, Ativo ativo, BigDecimal valorInvestido, BigDecimal valorAtual, BigDecimal taxaDiaria, LocalDate dataAplicacao, LocalDate dataVencimento, LocalDate dataUltimoRendimento, StatusTitulo status) {
-        this.investidorPessoa = investidorPessoa;
-        this.investidorEmpresa = investidorEmpresa;
+    public Titulo(Investidor investidor, Ativo ativo,
+                  BigDecimal valorInvestido, BigDecimal valorAtual,
+                  BigDecimal taxaDiaria, LocalDate dataAplicacao,
+                  LocalDate dataVencimento, LocalDate dataUltimoRendimento,
+                  StatusTitulo status) {
+        this.investidor = investidor;
         this.ativo = ativo;
         this.valorInvestido = valorInvestido;
         this.valorAtual = valorAtual;
@@ -33,60 +37,41 @@ public class Titulo implements Serializable {
         this.status = status;
     }
 
+    @Override
+    public String getIdentificador() {
+        return getNumero();
+    }
+
+    public String getNumero() {
+        String id = investidor.getIdentificador();
+        if (id != null && id.length() == 11) {
+            id = "000" + id;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String dataFormatada = dataAplicacao.format(formatter) + "0000";
+        return id + ativo.getCodigo() + dataFormatada;
+    }
+
     public boolean render() {
         LocalDate hoje = LocalDate.now();
-
-        // Se o status do titulo for diferente de ativo, nao atualizar o valor atual
         if (status != StatusTitulo.ATIVO) return false;
-        // Se a data atual for maior ou igual a data de vencimento, nao atualizar
         if (!hoje.isBefore(dataVencimento)) return false;
-        // Se a data atual for menor ou igual a data de aplicacao, nao atualizar
         if (!hoje.isAfter(dataAplicacao)) return false;
-        // Se a data atual for menor ou igual a data de ultimo rendimento, nao atualizar
         if (dataUltimoRendimento != null && !hoje.isAfter(dataUltimoRendimento)) return false;
 
-        LocalDate dataBase;
-        // Se a data de ultimo rendimento for null, calcular diferenca entre data atual e data da aplicacao
-        if (dataUltimoRendimento == null) {
-            dataBase = dataAplicacao;
-        } else {
-            // Se a data de ultimo rendimento for diferente de null, calcular diferenca entre data atual e data de ultimo rendimento
-            dataBase = dataUltimoRendimento;
-        }
-
+        LocalDate dataBase = dataUltimoRendimento == null ? dataAplicacao : dataUltimoRendimento;
         long dias = ChronoUnit.DAYS.between(dataBase, hoje);
         if (dias <= 0) return false;
 
-        // Formula: valorAtual = valorAtual * (1 + taxaDiaria/100) ^ dias
         BigDecimal taxaDecimal = taxaDiaria.divide(new BigDecimal("100"));
         BigDecimal fator = BigDecimal.ONE.add(taxaDecimal).pow((int) dias);
         this.valorAtual = this.valorAtual.multiply(fator);
         this.dataUltimoRendimento = hoje;
-
         return true;
     }
 
-    public String getNumero() {
-        String identificador;
-        // Se investidorPessoa for diferente de null: "000" + cpf + codigo do ativo + YYYYMMDD
-        if (investidorPessoa != null) {
-            identificador = "000" + investidorPessoa.getCpf();
-        } else {
-            // Se investidorEmpresa for diferente de null: cnpj + codigo do ativo + YYYYMMDD
-            identificador = investidorEmpresa.getCnpj();
-        }
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-        String dataFormatada = dataAplicacao.format(formatter) + "0000";
-
-        return identificador + ativo.getCodigo() + dataFormatada;
-    }
-
-    // Getters e Setters
-    public InvestidorPessoa getInvestidorPessoa() { return investidorPessoa; }
-    public void setInvestidorPessoa(InvestidorPessoa investidorPessoa) { this.investidorPessoa = investidorPessoa; }
-    public InvestidorEmpresa getInvestidorEmpresa() { return investidorEmpresa; }
-    public void setInvestidorEmpresa(InvestidorEmpresa investidorEmpresa) { this.investidorEmpresa = investidorEmpresa; }
+    public Investidor getInvestidor() { return investidor; }
+    public void setInvestidor(Investidor investidor) { this.investidor = investidor; }
     public Ativo getAtivo() { return ativo; }
     public void setAtivo(Ativo ativo) { this.ativo = ativo; }
     public BigDecimal getValorInvestido() { return valorInvestido; }
